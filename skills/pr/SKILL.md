@@ -39,7 +39,19 @@ What you ran, or what a reviewer should run.
 
 Title: conventional-commit style, matching the branch's commits, 60 chars max (aim for 52). Use the user's arguments as the title when they gave one.
 
-No mermaid diagram unless the change is genuinely hard to follow in prose (a new multi-service flow, a state machine). Most PRs don't need one — don't add it by reflex.
+Never mention Claude, AI, or any co-author/generator attribution anywhere in the PR.
+
+## Mermaid diagram
+
+Only when the PR changes branching logic that exists in the diff. The test, applied before drawing anything: for every decision diamond, can you name the lines that implement it? If a diamond describes a judgement made in prose — a prompt, a doc, a style guide — then nothing branches and the diagram is decoration pretending to be logic.
+
+No diagram for: prompt and copy changes, schema and type definitions, dependency bumps, config, pure styling, and refactors that move code without changing behaviour. A PR body with no diagram is a normal PR body.
+
+When one does earn its place: `flowchart TD` following the path something real takes through the change — a request, a record, a job — with decision diamonds where the behaviour branches.
+
+- Node labels are plain english for what happens (`Blocked · no email sent`), never file names, component names, endpoint paths or function names.
+- No `subgraph` blocks, no database/service boxes, no architecture layers — it is a flow, not a system map.
+- Under ~12 nodes; anything that does not fit goes in a one-line note under the diagram.
 
 ## Screenshots
 

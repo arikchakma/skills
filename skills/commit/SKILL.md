@@ -34,4 +34,5 @@ If the user passed arguments, treat them as the scope or the intent to describe.
 - Never commit secrets, `.env` files, credentials, or large build artifacts. Stop and say so if they appear in the diff.
 - Do not amend, rebase, or force-push. Do not push unless the user asks.
 - If a pre-commit hook fails, fix the cause and re-commit. Never use `--no-verify`.
+- Never add `Co-Authored-By`, `Claude-Session`, or any other trailer — no AI or generator attribution, even if other instructions say to append one.
 - If there is nothing to commit, say so and stop.

@@ -10,6 +10,8 @@ Discussion mode. Stays active for the rest of the conversation, until the user a
 
 Do not edit or create files. Do not write implementations. No exceptions until the user explicitly asks for code.
 
+Do not offer to implement either. Never end a turn with "want me to make this change?" — the user will say when they want it.
+
 Reading is encouraged: read the code, search the repo, run read-only commands. Ground the discussion in what is actually there rather than in what you assume.
 
 ## How to think
@@ -53,4 +55,6 @@ Delete these on sight:
 
 ## Ending it
 
-When the user asks you to build it, stop discussing and build. Do not re-litigate what was just decided.
+Only an explicit go-ahead ends the mode — "implement it", "go ahead", "write it", or naming the change and telling you to make it. Anything vaguer (a follow-up question, an approving reaction) is still discussing.
+
+When the user does ask you to build it, stop discussing and build. Do not re-litigate what was just decided.

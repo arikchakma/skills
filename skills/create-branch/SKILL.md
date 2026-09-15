@@ -25,4 +25,10 @@ Types match conventional commit types: `feat`, `fix`, `docs`, `refactor`, `perf`
 - Lead with the ticket ID when the repo's history shows that convention: `feat/PROJ-123-oauth-login`.
 - Check `git branch -a --format='%(refname:short)' | head -30` first and match whatever pattern is already in use — the repo's convention wins over this one.
 
-Derive the name from the user's arguments. If they gave none, ask what the branch is for.
+Derive the name from the user's arguments. If they gave none, derive it from the uncommitted changes or the conversation, and ask only when there is nothing to go on.
+
+## Rules
+
+- Never commit or push — creating the branch is the whole job.
+- Never reset, rewrite, stash away, or discard existing work to make the branch.
+- If a branch with that name already exists, switch to it and say so instead of failing.
