@@ -30,12 +30,22 @@ Otherwise:
 ```markdown
 ## Summary
 
-One to three bullets on what changed and why.
+- Bullet one
+- Bullet two
 
 ## Testing
 
 What you ran, or what a reviewer should run.
 ```
+
+One to three summary bullets, each 52-72 characters so a reviewer can
+scan them in one pass. Write them the way you'd say it to a teammate:
+plain english, active voice, what changed and why it matters. No
+jargon dumps, no file paths, no "refactored the foo handler to
+leverage the bar abstraction".
+
+- Good: `Stop double-charging users who retry a failed payment`
+- Bad: `Refactor PaymentService.retry() to dedupe idempotency keys`
 
 Title: conventional-commit style, matching the branch's commits, 60 chars max (aim for 52). Use the user's arguments as the title when they gave one.
 
