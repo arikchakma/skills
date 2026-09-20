@@ -10,7 +10,7 @@ Create a new branch off the freshly-fetched default branch.
 
 1. Find the default branch: `git symbolic-ref --short refs/remotes/origin/HEAD` (fall back to `main`, then `master`).
 2. Check for uncommitted work with `git status --short`. If there is any, ask the user whether to bring it along (`git switch -c` carries it) or stash it first. Do not discard anything.
-3. `git fetch origin <default>` then branch from `origin/<default>`, so the new branch is not based on a stale local copy.
+3. `git fetch origin <default>`, then `git switch -c <name> --no-track origin/<default>` so the branch is cut from a fresh copy without inheriting the default branch as its upstream.
 4. Report the branch name and what it was cut from.
 
 ## Naming
@@ -30,5 +30,6 @@ Derive the name from the user's arguments. If they gave none, derive it from the
 ## Rules
 
 - Never commit or push — creating the branch is the whole job.
+- `--no-track` is not optional. Without it git sets the new branch's upstream to `origin/<default>`, and the next push — from the CLI or a GUI's push button — lands the branch's commits directly on the default branch. If the output says `set up to track 'origin/<default>'`, fix it with `git branch --unset-upstream` before going further; the upstream gets set to the branch's own name on first push (`git push -u origin HEAD`).
 - Never reset, rewrite, stash away, or discard existing work to make the branch.
 - If a branch with that name already exists, switch to it and say so instead of failing.
