@@ -15,5 +15,6 @@ npx skills add arikchakma/skills
 | `/comments` | Write comments that earn their place, delete the ones that do not |
 | `/daily-news-brief` | Summarize Hacker News and GitHub Trending into one page |
 | `/react-component` | Write React components to this codebase's conventions |
+| `/function-params` | Decide when a function takes a named options object |
 
 Type the slash command to run any of them. `/discuss` is slash-only; the rest the agent can also invoke on its own when the task calls for it.
