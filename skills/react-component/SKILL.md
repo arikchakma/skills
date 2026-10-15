@@ -111,6 +111,42 @@ export function Button(props: ButtonProps) {
 }
 ```
 
+## Branch with early returns
+
+When the output depends on a status or a type, write a component that returns early for each case. Do not compute the value with an IIFE, a `switch` inside an arrow function, or a chain of ternary operators.
+
+```tsx
+// Bad
+const subtitle = (() => {
+  switch (campaign.status) {
+    case 'scheduled':
+      return `Sends ${label} to ${audience}`;
+    case 'canceled':
+      return `Canceled ${label}`;
+    default:
+      return `Sent ${label} to ${audience}`;
+  }
+})();
+
+// Good
+export function CampaignSubtitle(props: CampaignSubtitleProps) {
+  const { campaign, audience } = props;
+
+  if (campaign.status === 'scheduled') {
+    return <p>Sends {label} to {audience}</p>;
+  }
+  if (campaign.status === 'canceled') {
+    return <p>Canceled {label}</p>;
+  }
+
+  return <p>Sent {label} to {audience}</p>;
+}
+```
+
+Each branch stays readable and returns its own markup. If the value is not markup, write a named function with early returns in the domain's helper file instead.
+
+Keep a short ternary inline. One that fits on a line or two and picks between plain values reads fine where it is: `type === 'static' ? 'list' : 'filter'`, or `index === 0 ? 'Where' : match === 'all' ? 'and' : 'or'`. Do not move it into a helper. Extract only when a branch builds markup, holds real logic, or the chain grows long enough that you have to trace it.
+
 ## Match the existing design
 
 A new component must look like it was always here. Open two or three screens near it before you style it.
