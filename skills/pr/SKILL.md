@@ -38,6 +38,11 @@ Otherwise:
 What you ran, or what a reviewer should run.
 ```
 
+The Summary section is those bullets and nothing else. No lead-in
+sentence, no paragraphs between or after them, no "why this matters"
+epilogue. If something doesn't fit in a bullet it belongs in the
+commit message or a review comment, not the PR body.
+
 One to three summary bullets, each 52-72 characters so a reviewer can
 scan them in one pass. Write them the way you'd say it to a teammate:
 plain english, active voice, what changed and why it matters. No
@@ -53,9 +58,15 @@ Never mention Claude, AI, or any co-author/generator attribution anywhere in the
 
 ## Mermaid diagram
 
-Only when the PR changes branching logic that exists in the diff. The test, applied before drawing anything: for every decision diamond, can you name the lines that implement it? If a diamond describes a judgement made in prose — a prompt, a doc, a style guide — then nothing branches and the diagram is decoration pretending to be logic.
+Default is no diagram. Almost every PR ships without one, including most PRs that add an `if`. A PR body with no diagram is the normal PR body.
 
-No diagram for: prompt and copy changes, schema and type definitions, dependency bumps, config, pure styling, and refactors that move code without changing behaviour. A PR body with no diagram is a normal PR body.
+Draw one only when all three hold:
+
+1. The diff itself adds or changes control flow — not prose, copy, prompts, types, schema, config, dependency bumps, styling, or a refactor that moves code without changing behaviour.
+2. There are three or more decision points that interact, and the outcome depends on which order they resolve in.
+3. Every diamond maps to lines you can point at. A diamond describing a judgement made in prose — a prompt, a doc, a style guide — means nothing branches and the diagram is decoration pretending to be logic.
+
+Two or three permission checks in a row are not a flowchart, they are a sentence. If you are weighing whether the diagram earns its place, it doesn't — ship without it.
 
 When one does earn its place: `flowchart TD` following the path something real takes through the change — a request, a record, a job — with decision diamonds where the behaviour branches.
 
